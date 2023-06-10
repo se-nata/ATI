@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>ActHasForm</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<link  th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+      <div class="edit">
+		<h1 class = "text-center"> ActHasForm </h1>
+		
+		<form th:action="@{/acthasform/insert/}" th:object = "${acthasform}" method="POST">
+			<fieldset>
+			<div >
+				<label>Id</label>
+				<input type="number" name="id" th:field = "*{id}" readonly="readonly">
+			</div>
+			<div>
+				<label>Указание</label>
+					  <select  class="form-control" th:field="*{actId}">
+                         <option th:each="actlist : ${actlist}" th:value="${actlist.id}" th:text="${actlist.number}+ ' от ' +${actlist.date}" ></option>
+                      </select>
+			</div>
+			<div>
+				<label>Форма</label>
+				      <select  class="form-control" th:field="*{formId}">
+                         <option th:each="formlist : ${formlist}" th:value="${formlist.id}" th:text="${formlist.okudCd}+' ' +${formlist.formNm}"></option>
+                      </select>
+			</div>
+			<div>
+				<label>Note</label>
+				<textarea  name="note" th:field = "*{note}"></textarea>
+			</div>
+			
+			<div>
+				<input type="submit" value="Сохранить" class = "btn btn-primary btn-lg">
+			</div>
+			</fieldset>
+			</form>
+			
+	
+      </div>
+     <script >
+      var tx = document.getElementsByTagName('textarea');
+      var tp = document.getElementsByTagName('div');
+      for (var i = 0; i < tx.length; i++) {
+
+      tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+      tx[i].addEventListener("input", OnInput, false);
+
+      }
+      for (var i = 0; i < tp.length; i++) {
+
+      	tp[i].setAttribute('style', 'height:' + (tp[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+      	tp[i].addEventListener("input", OnInput, false);
+
+      	}
+      function OnInput() {
+
+      this.style.height = 'auto';
+
+      this.style.height = (this.scrollHeight) + 'px';
+
+      }
+      </script>
+</body>
+</html>

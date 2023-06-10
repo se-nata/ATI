@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>ФТ</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+ <link  th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+   <div class="edit">
+		<h1 class = "text-center"> ФТ </h1>
+	
+		<form th:action="@{/functionalrequirements/update/{id} (id=${functionalrequirements.id})}" th:object = "${functionalrequirements}" method="POST">
+			<fieldset>
+			<div >
+				<label>Id</label>
+				<input type="number" name="id" th:field = "*{id}" readonly="readonly">
+			</div>
+			<div>
+				<label >Number</label>
+			<input type="text" name="number" th:field = "*{number}">
+			</div>
+			<div>
+				<label>Date</label>
+				<input   type="date" name="date" th:field = "*{date}">
+			</div>
+			<div >
+				<label>Name</label><br>
+				<textarea type="text" name="name" th:field = "*{name}"></textarea>
+				 <p></p>
+			</div>
+			<div >
+				<label>Description</label><br>
+				<textarea type="text" name="description" th:field = "*{description}"></textarea>
+				 <p></p>
+			</div>
+			<div>
+				<input type="submit" value="Сохранить" class = "btn btn-primary">
+			</div>
+			</fieldset>
+			</form>
+			
+	</div>
+<script >
+var tx = document.getElementsByTagName('textarea');
+var tp = document.getElementsByTagName('div');
+for (var i = 0; i < tx.length; i++) {
+
+tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+tx[i].addEventListener("input", OnInput, false);
+
+}
+for (var i = 0; i < tp.length; i++) {
+
+	tp[i].setAttribute('style', 'height:' + (tp[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+	tp[i].addEventListener("input", OnInput, false);
+
+	}
+function OnInput() {
+
+this.style.height = 'auto';
+
+this.style.height = (this.scrollHeight) + 'px';
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>RelationType</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link  th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+      <div class="edit">
+		<h1 class = "text-center">RelationType </h1>
+	
+		<form th:action="@{/relationtype/update/{id} (id=${relationtype.id})}" th:object = "${relationtype}" method="POST">
+			<fieldset>
+			<div >
+				<label>Id</label>
+				<input type="number" name="id" th:field = "*{id}" readonly="readonly">
+			</div>
+			
+			<div>
+				<label>Description</label>
+				<textarea  name="description" th:field = "*{description}"></textarea>
+			</div>
+			<div>
+				<input type="submit" value="Сохранить"class = "btn btn-primary">
+			</div>
+			</fieldset>
+			</form>
+	   </div>
+<script >
+var tx = document.getElementsByTagName('textarea');
+var tp = document.getElementsByTagName('div');
+for (var i = 0; i < tx.length; i++) {
+
+tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+tx[i].addEventListener("input", OnInput, false);
+
+}
+for (var i = 0; i < tp.length; i++) {
+
+	tp[i].setAttribute('style', 'height:' + (tp[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+	tp[i].addEventListener("input", OnInput, false);
+
+	}
+function OnInput() {
+
+this.style.height = 'auto';
+
+this.style.height = (this.scrollHeight) + 'px';
+
+}
+</script>	
+
+</body>
+</html>

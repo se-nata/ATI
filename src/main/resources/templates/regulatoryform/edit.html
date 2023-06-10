@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Формы</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link  th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+ <div class="edit">
+		<h1 class = "text-center"> Формы </h1>
+	
+		<form th:action="@{/regulatoryform/update/{id} (id=${regulatoryform.id})}" th:object = "${regulatoryform}" method="POST">
+			<fieldset>
+			<div >
+				<label>Id</label>
+				<input type="number" name="id" th:field = "*{id}" readonly="readonly">
+			</div>
+			<div>
+				<label>Okud_cd</label>
+				<input type="text" name="okudCd" th:field = "*{okudCd}">
+			</div>
+			<div>
+				<label>Form_nm</label>
+				<textarea name="formNm" th:field = "*{formNm}"></textarea>
+			</div>
+			<div>
+				<label>Form_note</label>
+				<textarea name="formNote" th:field = "*{formNote}"></textarea>
+			</div>
+			<div>
+				<label>Eff_dt</label>
+				<input type="date" name="effDt" th:field = "*{effDt}">
+			</div>
+			<div>
+				<label>End_dt</label>
+				<input type="date" name="endDt" th:field = "*{endDt}">
+			</div>
+			<div>
+				<label>Aff_dt</label>
+				<input type="date" name="affDt" th:field = "*{affDt}">
+			</div>
+			<div>
+				<input type="submit" value="Сохранить"class = "btn btn-primary">
+			</div>
+			</fieldset>
+			</form>
+	</div>		
+	<script >
+var tx = document.getElementsByTagName('textarea');
+var tp = document.getElementsByTagName('div');
+for (var i = 0; i < tx.length; i++) {
+
+tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+tx[i].addEventListener("input", OnInput, false);
+
+}
+for (var i = 0; i < tp.length; i++) {
+
+	tp[i].setAttribute('style', 'height:' + (tp[i].scrollHeight) + 'px;overflow-y:hidden;');
+
+	tp[i].addEventListener("input", OnInput, false);
+
+	}
+function OnInput() {
+
+this.style.height = 'auto';
+
+this.style.height = (this.scrollHeight) + 'px';
+
+}
+</script>
+
+</body>
+</html>
