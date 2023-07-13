@@ -67,3 +67,4 @@ public class AtiActHasFormController {
 		return "redirect:/acthasform/";
 	}
 }
+

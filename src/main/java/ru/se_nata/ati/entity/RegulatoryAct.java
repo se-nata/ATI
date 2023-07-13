@@ -3,6 +3,8 @@ package ru.se_nata.ati.entity;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,14 +35,14 @@ public class RegulatoryAct{
 	@Column(name = "description",nullable = true)
 	private String description;
 	
-	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy ="actId")
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="actId")
 	private Set<ActHasForm> acthasform = new HashSet<ActHasForm>();
-	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy="leftActId")
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="leftActId")
 	private Set<ActRelation> actrelationleft = new HashSet<ActRelation>();
-	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy="rightActId")
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="rightActId")
 	private Set<ActRelation> actrelationright = new HashSet<ActRelation>();
 	
 	public RegulatoryAct() {

@@ -15,6 +15,9 @@
 		<h1 class = "text-center">RelationType </h1>
 	
 		<form th:action="@{/relationtype/update/{id} (id=${relationtype.id})}" th:object = "${relationtype}" method="POST">
+		<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 			<fieldset>
 			<div >
 				<label>Id</label>

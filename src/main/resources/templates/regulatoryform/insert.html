@@ -16,7 +16,9 @@
 		<h1 class = "text-center"> Формы </h1>
 		
 
-		<form th:action="@{/regulatoryform/insert/}" th:object = "${regulatoryform}" method="POST">
+		<form th:action="@{/regulatoryform/insert/}" th:object = "${regulatoryform}" method="POST"><input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 			<fieldset>
 			<div >
 				<label>Id</label>

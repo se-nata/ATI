@@ -42,6 +42,9 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
        <div class="auth__buttons" >
 						<button class="btn" style="width: 150px; height: 35px">Enter</button>
 		</div>
+		<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
     </form>
     
     </div>

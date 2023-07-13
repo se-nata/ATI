@@ -1,6 +1,8 @@
 package ru.se_nata.ati.service;
 
 import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -135,7 +137,10 @@ public class AtiServiceImpl implements AtiServise{
 
 	@Override
 	public ActHasForm findbyIdActHasForm(Integer id) {
-		return  atiActHasFormRepository.findById(id).get();
+		
+		 ActHasForm acthasform=atiActHasFormRepository.findById(id).get(); 
+		 Hibernate.initialize( acthasform);
+		return acthasform;
 	}
 
 	

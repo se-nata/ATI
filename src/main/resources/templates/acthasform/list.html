@@ -21,8 +21,11 @@
 <body>
 <form th:action="@{/logout}" method="post" style="height: 50px;width: 100px;margin-left: 20px">
     <input type="submit" value="Logout" style="height: 50px;width: 100px"/>
+    <input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 </form>
-   
+
 	<div class="conteiner" >
 	<div class="href" >
 	<h3 >
@@ -37,6 +40,7 @@
 	</h3>
 	</div>
 		<div class="row">
+		
 			<h1>ActHasForm</h1> 
    
 		</div>
@@ -78,12 +82,7 @@
 	
 	</div>
 
-<script >
 
-
-
-
-</script>
  <script>
       $(document).ready(function () {
         var myTable = $("#search").DataTable({
@@ -116,5 +115,6 @@
           });
       });
   </script>
+
 </body>
 </html>

@@ -15,6 +15,9 @@
 		<h1 class = "text-center"> Периодичность </h1>
 	
 		<form th:action="@{/formfrequency/update/{id} (id=${formfrequency.id})}" th:object = "${formfrequency}" method="POST">
+		<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 			<fieldset>
 			<div >
 				<label>Id</label>

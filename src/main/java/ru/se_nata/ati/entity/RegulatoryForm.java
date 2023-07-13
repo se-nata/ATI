@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,10 +45,10 @@ public class RegulatoryForm {
 		
 		@Column(name = "aff_dt",nullable = true)
 		private Date affDt;
-		
-		@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL ,mappedBy="formId")
+		@JsonIgnore
+		@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL ,mappedBy="formId")
 		private Set<ActHasForm> acthasform=new HashSet<ActHasForm>();
-		
+		@JsonIgnore
 		@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 		@JoinTable(name="form_has_frequency",joinColumns = @JoinColumn(name="form_id"),inverseJoinColumns = @JoinColumn(name="frequency_id"))
 		private List<FormFrequency> formFrequency=new ArrayList<FormFrequency>();

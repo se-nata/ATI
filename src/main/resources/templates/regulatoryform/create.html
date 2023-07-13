@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      >
+    
 <head>
 
 <meta charset="UTF-8">
@@ -17,6 +20,9 @@
 
 		<form class="create-form" th:action="@{/regulatoryform/create/}"
 			th:object="${regulatoryform}" method="POST">
+			<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 			<fieldset>
 			<table border="1">
 			
@@ -30,8 +36,12 @@
 				</div>
 				
 				<div>
-					<label>Okud_cd</label> <input type="text" name="okudCd"
-						th:field="*{okudCd}" ></input>
+					<label>Okud_cd</label> 
+					<input type="text" name="okudCd"
+						th:field="*{okudCd}"
+						th:classappend="${#fields.hasErrors('okudCd')?'border-red-300 focus:border-red-300 focus:ring-red-500':'focus:ring-green-500 focus:border-green-500'}"
+						 ></input>
+						   
 				</div>
 				<div>
 					<label>Form_nm</label>

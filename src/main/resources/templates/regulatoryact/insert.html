@@ -16,6 +16,9 @@
 	
 		
 		<form th:action="@{/regulatoryact/insert/}" th:object = "${regulatoryact}" method="POST">
+		<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 		<fieldset>
 			<div >
 				<label>Id</label>

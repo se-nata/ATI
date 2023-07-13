@@ -15,6 +15,9 @@
 		<h1 class = "text-center">Связи Указаний (act_relation)</h1>
 		
 		<form th:action="@{/actrelation/update/{id} (id=${actrelation.id})}"  th:object = "${actrelation}" method="POST">
+		<input type="hidden"
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
 			<fieldset>
 			<div >
 				<label>Id</label>
