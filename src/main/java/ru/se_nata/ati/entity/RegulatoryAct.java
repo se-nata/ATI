@@ -1,5 +1,6 @@
 package ru.se_nata.ati.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "regulatory_act")
-public class RegulatoryAct{
+public class RegulatoryAct implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,6 +133,14 @@ public class RegulatoryAct{
 	  
 	  public void setActrelationright(Set<ActRelation> actrelationright) {
 	  this.actrelationright = actrelationright; }
+
+
+	@Override
+	public String toString() {
+		return "RegulatoryAct [id=" + id + ", number=" + number + ", date=" + date + ", name=" + name + ", description="
+				+ description + ", acthasform=" + acthasform + ", actrelationleft=" + actrelationleft
+				+ ", actrelationright=" + actrelationright + "]";
+	}
 	 
 	
 	

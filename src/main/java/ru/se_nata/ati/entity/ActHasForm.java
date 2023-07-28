@@ -1,5 +1,7 @@
 package ru.se_nata.ati.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="act_has_form")
 
-public class ActHasForm {
+public class ActHasForm implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

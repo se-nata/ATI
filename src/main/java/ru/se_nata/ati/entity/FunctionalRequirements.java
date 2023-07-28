@@ -1,5 +1,6 @@
 package ru.se_nata.ati.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -11,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "functional_requirements")
-public class FunctionalRequirements {
+public class FunctionalRequirements implements Serializable{
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ import ru.se_nata.ati.service.AtiServiceImpl;
 @EnableAutoConfiguration
 @EntityScan(basePackages = "ru.se_nata.ati.entity")
 @SpringBootApplication
-@ComponentScan(basePackages = { "ru.se_nata.ati.formatter", "ru.se_nata.ati.service", "ru.se_nata.ati.controller","ru.se_nata.ati.repository","ru.se_nata.ati.security","ru.se_nata.ati.restcontroller" })
+@ComponentScan(basePackages = { "ru.se_nata.ati.formatter", "ru.se_nata.ati.service", "ru.se_nata.ati.controller","ru.se_nata.ati.repository","ru.se_nata.ati.security","ru.se_nata.ati.kafka"})
 @EnableTransactionManagement
 public class AtiApplication extends SpringBootServletInitializer{
 

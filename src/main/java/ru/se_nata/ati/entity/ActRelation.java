@@ -1,6 +1,8 @@
   package ru.se_nata.ati.entity;
   
-  import jakarta.persistence.Entity;
+  import java.io.Serializable;
+
+import jakarta.persistence.Entity;
   import jakarta.persistence.GeneratedValue; 
   import jakarta.persistence.GenerationType; 
   import jakarta.persistence.Id; 
@@ -10,7 +12,7 @@
   
   @Entity
   @Table(name="act_relation") 
-  public class ActRelation {
+  public class ActRelation implements Serializable{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

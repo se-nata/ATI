@@ -11,18 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ru.se_nata.ati.entity.FormHasFrequency;
+import ru.se_nata.ati.kafka.KafkaProducer;
 import ru.se_nata.ati.service.AtiServiceImpl;
 
 @Controller
 @RequestMapping("/formhasfrequency/")
 public class AtiFormHasFrequencyController {
 	@Autowired
+	private KafkaProducer kafkaProducer;
+	@Autowired
 	private AtiServiceImpl atiServiceImpl;
-
-	public void setAtiServiceImpl(AtiServiceImpl atiServiceImpl) {
+	
+	public AtiFormHasFrequencyController(KafkaProducer kafkaProducer, AtiServiceImpl atiServiceImpl) {
+		this.kafkaProducer = kafkaProducer;
 		this.atiServiceImpl = atiServiceImpl;
 	}
-	
+
 	@GetMapping("/")
 	public String listFormHasFrequency(Model model) {
 		model.addAttribute("formhasfrequency",atiServiceImpl.findAllFormHasFrequency());
@@ -58,6 +62,7 @@ public class AtiFormHasFrequencyController {
 	@PostMapping(value = "insert/")
 	public String save(@ModelAttribute("formHasFrequency")FormHasFrequency formHasFrequency) {
 		atiServiceImpl.saveFormHasFrequency(formHasFrequency);
+		kafkaProducer.sendMessage(formHasFrequency.toString());
 		return "redirect:/formhasfrequency/";
 	}
 	

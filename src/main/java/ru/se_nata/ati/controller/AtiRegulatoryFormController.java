@@ -2,10 +2,7 @@ package ru.se_nata.ati.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,21 +16,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import ru.se_nata.ati.entity.ActHasForm;
 import ru.se_nata.ati.entity.FormFrequency;
 import ru.se_nata.ati.entity.FormHasFrequency;
 import ru.se_nata.ati.entity.RegulatoryAct;
 import ru.se_nata.ati.entity.RegulatoryForm;
+import ru.se_nata.ati.kafka.KafkaProducer;
 import ru.se_nata.ati.service.AtiServiceImpl;
 
 @Controller
 @RequestMapping("/regulatoryform/")
 public class AtiRegulatoryFormController {
 	@Autowired
+	private KafkaProducer kafkaProducer; 
+	
+	@Autowired
 	private AtiServiceImpl atiServiceImpl;
 
-	public void setAtiServiceImpl(AtiServiceImpl atiServiceImpl) {
+
+	public AtiRegulatoryFormController(KafkaProducer kafkaProducer, AtiServiceImpl atiServiceImpl) {
+		this.kafkaProducer = kafkaProducer;
 		this.atiServiceImpl = atiServiceImpl;
 	}
 	@InitBinder
@@ -77,6 +79,7 @@ public class AtiRegulatoryFormController {
 	@PostMapping(value = "insert/")
 	public String save(@ModelAttribute("regulatoryform") RegulatoryForm regulatoryform) {
 	atiServiceImpl.saveRegulatoryForm(regulatoryform);
+	kafkaProducer.sendMessage(regulatoryform.toString());
 		return "redirect:/regulatoryform/";
 		
 	}

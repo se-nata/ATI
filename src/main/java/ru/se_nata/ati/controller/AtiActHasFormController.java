@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.se_nata.ati.entity.ActHasForm;
 import ru.se_nata.ati.entity.RegulatoryAct;
 import ru.se_nata.ati.entity.RegulatoryForm;
+import ru.se_nata.ati.kafka.KafkaProducer;
 import ru.se_nata.ati.service.AtiServiceImpl;
 @Controller
 @RequestMapping("/acthasform/")
 public class AtiActHasFormController {
 	@Autowired
+	private KafkaProducer kafkaProducer;
+	@Autowired
 	private AtiServiceImpl atiServiceImpl;
 
-	public void setAtiServiceImpl(AtiServiceImpl atiServiceImpl) {
+	
+	public AtiActHasFormController(KafkaProducer kafkaProducer, AtiServiceImpl atiServiceImpl) {
+		this.kafkaProducer = kafkaProducer;
 		this.atiServiceImpl = atiServiceImpl;
 	}
 	@GetMapping()
@@ -57,6 +62,7 @@ public class AtiActHasFormController {
 	@PostMapping(value = "insert/")
 	public String save(@ModelAttribute("acthasform") ActHasForm acthasform) {
 	atiServiceImpl.saveActHasForm(acthasform);
+	kafkaProducer.sendMessage(acthasform.toString());
 		return "redirect:/acthasform/";
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

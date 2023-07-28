@@ -1,6 +1,7 @@
   package ru.se_nata.ati.entity;
   
-  import java.util.HashSet; 
+  import java.io.Serializable;
+import java.util.HashSet; 
   import java.util.Set;
   import jakarta.persistence.Column;
   import jakarta.persistence.Entity;
@@ -13,7 +14,7 @@
   
   @Entity
   @Table(name = "relation_type") 
-  public class RelationType {
+  public class RelationType implements Serializable{
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

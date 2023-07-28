@@ -1,5 +1,6 @@
 package ru.se_nata.ati.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "regulatory_form")
-public class RegulatoryForm {
+public class RegulatoryForm implements Serializable{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;

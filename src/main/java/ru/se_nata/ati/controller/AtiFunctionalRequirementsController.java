@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import ru.se_nata.ati.entity.ActHasForm;
 import ru.se_nata.ati.entity.FunctionalRequirements;
-import ru.se_nata.ati.entity.RegulatoryAct;
+import ru.se_nata.ati.kafka.KafkaProducer;
 import ru.se_nata.ati.service.AtiServiceImpl;
 
 @Controller
 @RequestMapping("/functionalrequirements/")
 public class AtiFunctionalRequirementsController {
+	@Autowired
+	private KafkaProducer kafkaProducer;
 	
 	@Autowired
 	private AtiServiceImpl atiServiceImpl;
-
-	public AtiFunctionalRequirementsController(AtiServiceImpl atiServiceImpl) {
+	
+	public AtiFunctionalRequirementsController(KafkaProducer kafkaProducer, AtiServiceImpl atiServiceImpl) {
+		this.kafkaProducer = kafkaProducer;
 		this.atiServiceImpl = atiServiceImpl;
 	}
-	
 	@GetMapping("/")
 	public String listRegulatoryAct(Model model) {
 		List<FunctionalRequirements> functionalrequirements=atiServiceImpl.findAllFunctionalRequirements();
@@ -59,6 +59,7 @@ public class AtiFunctionalRequirementsController {
 	@PostMapping(value = "insert/")
 	public String save(@ModelAttribute("functionalrequirements") FunctionalRequirements functionalrequirements) {
 	atiServiceImpl.saveFunctionalRequirements(functionalrequirements);
+	kafkaProducer.sendMessage(functionalrequirements.toString());
 		return "redirect:/functionalrequirements/";
 	}
 	

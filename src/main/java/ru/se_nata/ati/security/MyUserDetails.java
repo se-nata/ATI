@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ru.se_nata.ati.entity.Role;
 import ru.se_nata.ati.entity.User;
 
+
 public class MyUserDetails implements UserDetails{
 	
  private User user;

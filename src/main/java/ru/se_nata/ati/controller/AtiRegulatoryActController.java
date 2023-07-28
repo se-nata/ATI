@@ -10,17 +10,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.se_nata.ati.entity.ActHasForm;
 import ru.se_nata.ati.entity.RegulatoryAct;
+import ru.se_nata.ati.kafka.KafkaProducer;
 import ru.se_nata.ati.service.AtiServiceImpl;
 
 @Controller
 @RequestMapping("/regulatoryact/")
 public class AtiRegulatoryActController {
+	
+	@Autowired
+	private KafkaProducer kafkaProducer;
+	
 	@Autowired
 	private AtiServiceImpl atiServiceImpl;
 
-	public void setAtiServiceImpl(AtiServiceImpl atiServiceImpl) {
+	public AtiRegulatoryActController(KafkaProducer kafkaProducer, AtiServiceImpl atiServiceImpl) {
+	
+		this.kafkaProducer = kafkaProducer;
 		this.atiServiceImpl = atiServiceImpl;
 	}
 	@GetMapping("/")
@@ -54,6 +60,7 @@ public class AtiRegulatoryActController {
 	@PostMapping(value = "insert/")
 	public String save(@ModelAttribute("regulatoryact") RegulatoryAct regulatoryact) {
 	atiServiceImpl.saveRegulatoryAct(regulatoryact);
+	kafkaProducer.sendMessage(regulatoryact.toString());
 		return "redirect:/regulatoryact/";
 	}
 	
