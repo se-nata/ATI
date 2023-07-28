@@ -44,6 +44,10 @@ public class FormHasFrequency implements Serializable{
 	public void setFrequencyId(FormFrequency frequencyId) {
 		this.frequencyId = frequencyId;
 	}
+	@Override
+	public String toString() {
+		return "FormHasFrequency [id=" + id + ", formId=" + formId + ", frequencyId=" + frequencyId + "]";
+	}
 
 	
 	

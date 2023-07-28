@@ -58,6 +58,12 @@ public class FormFrequency implements Serializable{
 		this.frequencyCd = frequencyCd;
 	}
 
+	@Override
+	public String toString() {
+		return "FormFrequency [id=" + id + ", frequencyNm=" + frequencyNm + ", frequencyCd=" + frequencyCd
+				+ ", formFrequency=" + formFrequency + "]";
+	}
+
 
 
 

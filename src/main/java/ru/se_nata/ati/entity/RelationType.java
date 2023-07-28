@@ -35,6 +35,10 @@ import java.util.HashSet;
 	  return description; } 
   public void setDescription(String description) {
 	  this.description = description; }
+@Override
+public String toString() {
+	return "RelationType [id=" + id + ", description=" + description + ", relationTypeId=" + relationTypeId + "]";
+}
   
 
   

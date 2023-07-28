@@ -54,6 +54,12 @@ import jakarta.persistence.Entity;
   
   public void setRelationTypeId(RelationType relationTypeId) {
   this.relationTypeId = relationTypeId; }
+
+@Override
+public String toString() {
+	return "ActRelation [id=" + id + ", leftActId=" + leftActId + ", rightActId=" + rightActId + ", relationTypeId="
+			+ relationTypeId + "]";
+}
  
   
   

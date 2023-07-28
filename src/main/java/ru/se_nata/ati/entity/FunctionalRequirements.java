@@ -69,6 +69,12 @@ public class FunctionalRequirements implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Override
+	public String toString() {
+		return "FunctionalRequirements [id=" + id + ", number=" + number + ", date=" + date + ", name=" + name
+				+ ", description=" + description + "]";
+	}
 	
 	
 }
