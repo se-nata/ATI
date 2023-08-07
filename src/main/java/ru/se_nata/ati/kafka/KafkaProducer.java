@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducer {
 
+	public KafkaProducer() {
+		super();
+	}
+
 	private KafkaTemplate<String, String> kafkaTemplate;
 
 	public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {

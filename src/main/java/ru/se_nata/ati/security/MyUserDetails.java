@@ -13,54 +13,55 @@ import ru.se_nata.ati.entity.Role;
 import ru.se_nata.ati.entity.User;
 
 
-public class MyUserDetails implements UserDetails{
-	
- private User user;
-     
-	 public MyUserDetails(User user) {
-	       this.user = user;
-	    }
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-    Set<Role> roles = user.getRoles();
-	List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-	         
-	   for(Role role : roles) {
-	   authorities.add(new SimpleGrantedAuthority(role.getName()));
-	     }
-	         
-	        return authorities;
-	    }
+public class MyUserDetails implements UserDetails {
 
-	@Override
-	public String getPassword() {
-		return user.getPassword();
-	}
+    private User user;
 
-	@Override
-	public String getUsername() {
-		return user.getUsername();
-	}
+    public MyUserDetails(User user) {
+        this.user = user;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+        Set<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
 
-	@Override
-	public boolean isEnabled() {
-		return user.isEnabled();
-	}
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return user.isEnabled();
+    }
 
 }

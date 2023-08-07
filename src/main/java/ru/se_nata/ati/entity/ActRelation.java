@@ -29,9 +29,15 @@ import jakarta.persistence.Entity;
   @ManyToOne()
   @JoinColumn(name="relation_type_id") 
   private RelationType relationTypeId;
-  
-  
-  public ActRelation() {
+
+    public ActRelation(Integer id, RegulatoryAct leftActId, RegulatoryAct rightActId, RelationType relationTypeId) {
+      this.id = id;
+      this.leftActId = leftActId;
+      this.rightActId = rightActId;
+      this.relationTypeId = relationTypeId;
+    }
+
+    public ActRelation() {
   
   }
   

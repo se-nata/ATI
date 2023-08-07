@@ -34,6 +34,12 @@ public class FormFrequency implements Serializable{
 	
 	}
 
+	public FormFrequency(Integer id, String frequencyNm, String frequencyCd) {
+		this.id = id;
+		this.frequencyNm = frequencyNm;
+		this.frequencyCd = frequencyCd;
+	}
+
 	public Integer getId() {
 		return id;
 	}

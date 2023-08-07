@@ -23,7 +23,15 @@ import java.util.HashSet;
   @Column(name = "description") 
   private String description;
 
-  @OneToMany(mappedBy="relationTypeId", fetch=FetchType.LAZY)
+    public RelationType() {
+    }
+
+    public RelationType(Integer id, String description) {
+      this.id = id;
+      this.description = description;
+    }
+
+    @OneToMany(mappedBy="relationTypeId", fetch=FetchType.LAZY)
   private Set<ActRelation> relationTypeId = new HashSet<ActRelation>();
   
   public Integer getId() { 

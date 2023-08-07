@@ -13,7 +13,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "functional_requirements")
 public class FunctionalRequirements implements Serializable{
-    
+	public FunctionalRequirements(Integer id, String number, Date date, String name, String description) {
+		this.id = id;
+		this.number = number;
+		this.date = date;
+		this.name = name;
+		this.description = description;
+	}
+
+	public FunctionalRequirements() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
